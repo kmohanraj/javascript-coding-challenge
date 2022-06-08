@@ -59,6 +59,16 @@ function mul(x) {
 console.log(mul(2)(3)(4)) // => 24
 console.log(mul(2)(3)(5)) // => 30
 // explanation 2x3 => 6x4 => 24
+//--------------------------------------------------------------------      
+//6.5) Infinite currying
+
+function add(a) {
+    return function (b) {
+        if(b) return add(a+b);
+        return a;
+    }
+}
+console.log(add(5)(2)(4)(2)(4)())
 
 // -------------------------------------------------------------------- 
 //6.1 Explain the MUL() in Arrow function
@@ -102,3 +112,70 @@ const findLength = (num) => {
   return arr.filter((val) => val === num)
 }
 console.log(findLength(1).length) // => 5
+//--------------------------------------------------------------------      
+console.log(0)
+setTimeout(() => console.log(1), 100)
+setTimeout(() => console.log(2), 0)
+console.log(3)
+
+// OutPut:
+// 0
+// 3
+// 2
+// 1
+
+//--------------------------------------------------------------------      
+
+function x() {
+  setTimeout(function () {
+    console.log(i)
+  }, 1000)
+  var i = 23;
+}
+x();
+
+// Output: 
+// 23
+
+//--------------important------------------------------------------------------xxxxxxxxxxxxxx      
+// Implement this code calc.add(10).multiply(5).substract(30).add(10)
+const calc = {
+  total: 0,
+  add(a) {
+    this.total += a;
+    return this;
+  },
+  multiply(a) {
+    this.total *= a;
+    return this;
+  },
+  substract(a) {
+    this.total -= a;
+    return this;
+  }
+}
+const result = calc.add(10).multiply(5).substract(30).add(10)
+console.log(result.total)
+
+//--------------important------------------------------------------------------xxxxxxxxxxxxxx      
+function abc() {
+  console.log(a,b,c)
+  const a = 1;
+  let b = 2;
+  var c = 3;
+}
+abc()
+
+//--------------important------------------------------------------------------xxxxxxxxxxxxxx      
+console.log('1')
+setTimeout(() => console.log("set"), 0);
+Promise.resolve(() => console.log('promise')).then((res) =>  res());
+console.log('3')
+
+// output:
+// 1
+// 3
+// promise
+// set
+
+//--------------important------------------------------------------------------xxxxxxxxxxxxxx      
